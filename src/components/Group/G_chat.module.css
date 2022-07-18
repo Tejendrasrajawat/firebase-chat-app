@@ -1,0 +1,77 @@
+.welcome {
+  text-align: center;
+  position: fixed;
+  color: black;
+  margin: 0px auto;
+  background-color: rgba(0, 0, 0, 0.336);
+  width: 100%;
+}
+
+.chatBox {
+  padding: 3rem 0 5rem 0;
+}
+
+.message {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px 10px;
+  min-width: 150px;
+  max-width: 300px;
+  padding: 10px;
+}
+
+.chatFrom {
+  width: 100%;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.301);
+  position: fixed;
+  bottom: 0px;
+  justify-content: end;
+}
+
+input {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: black;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.customFileInput {
+  color: transparent;
+}
+.customFileInput::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.customFileInput::before {
+  content: "Select File/Image";
+  color: black;
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.customFileInput:hover::before {
+  border-color: black;
+}
+.customFileInput:active {
+  outline: 0;
+}
+.customFileInput:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}

@@ -1,0 +1,23 @@
+.FileUpload {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  background-color: white;
+  border: 1px solid black;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+}
+
+.upImg {
+  width: 100%;
+  max-height: 300px;
+  text-align: center;
+}
+
+.uploadForm {
+  margin-top: 1rem;
+}
+
+.messageInput {
+  width: 70%;
+}
