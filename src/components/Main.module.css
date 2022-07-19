@@ -18,10 +18,15 @@
   margin-top: 5rem;
 }
 
+.common {
+  display: flex;
+  justify-content: center;
+}
+
 button {
   background: none;
   border: 1px solid black;
   color: black;
-  padding: 5rem;
+
   cursor: pointer;
 }

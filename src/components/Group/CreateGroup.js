@@ -11,6 +11,7 @@ function CreateGroup() {
     if (roomName) {
       addChannel(roomName);
     }
+    setRoomName("");
   };
 
   useEffect(() => {

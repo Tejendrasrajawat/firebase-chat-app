@@ -1,47 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebaseInit";
 import { useNavigate, userNavigation } from "react-router-dom";
+import style from "./Single.module.css";
 
 function Single() {
   const navigate = useNavigate();
-  const uid1 = 30;
-  const uid2 = 31;
+  const demo = [];
+  for (let i = 0; i < 50; i++) {
+    demo.push({ uid: (Math.random() * 1000).toFixed(0) });
+  }
 
   const goToChat = (id) => {
     navigate(`s_chat/${id}`);
   };
 
   return (
-    <>
-      <div
-        onClick={() => goToChat(uid2)}
-        style={{
-          border: "1px solid black",
-          borderRadius: "10px",
-          margin: "5px auto",
-          width: "50%",
-          textAlign: "center",
-          alignItems: "center",
-          cursor: "pointer",
-        }}
-      >
-        User : tejendra
-      </div>
-      <div
-        onClick={() => goToChat(uid1)}
-        style={{
-          border: "1px solid black",
-          borderRadius: "10px",
-          margin: "5px auto",
-          width: "50%",
-          textAlign: "center",
-          alignItems: "center",
-          cursor: "pointer",
-        }}
-      >
-        User : ravi
-      </div>
-    </>
+    <div className={style.single}>
+      {demo.map((item) => (
+        <div onClick={() => goToChat(item.uid)} className={style.card}>
+          <p> {item.uid}</p>
+        </div>
+      ))}
+    </div>
   );
 }
 

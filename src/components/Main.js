@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Group from "./Group/Group";
 import Single from "./Single/Single";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../firebaseInit";
 import style from "./Main.module.css";
 
 function Main(props) {
@@ -10,6 +11,11 @@ function Main(props) {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
   }, []);
+
+  const logout = () => {
+    auth.signOut();
+    localStorage.clear();
+  };
   return (
     <>
       <h4 className={style.heading}>
@@ -21,15 +27,19 @@ function Main(props) {
           <button onClick={() => navigate("/single")}>
             Go To Single Chat Demo
           </button>
-          {/* <Single user={props.user} /> */}
         </div>
         <div className={style.group}>
           <button onClick={() => navigate("/group")}>
             Go To Group Chat Demo
           </button>
-          {/* <Group user={props.user} /> */}
         </div>
       </div>
+      <div className={style.common}>
+        <button onClick={() => navigate("/common")}>
+          Go To Common Chat Demo
+        </button>
+      </div>
+      {/* <button onClick={logout}>Sign Out</button> */}
     </>
   );
 }

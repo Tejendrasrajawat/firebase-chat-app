@@ -81,7 +81,7 @@ function FileUpload({ setState, file }) {
       <div open={open} onClose={handleClose}>
         <div>
           <img src={fileObj} alt={file.name} className={style.upImg} />
-          <div>FileName: {file.name}</div>
+          <div style={{ marginLeft: "10px" }}>FileName: {file.name}</div>
           <br />
         </div>
 
