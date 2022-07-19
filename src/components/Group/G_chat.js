@@ -27,7 +27,9 @@ function G_chat() {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
-    downSlide.current.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      downSlide.current.scrollIntoView({ behavior: "smooth" });
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -87,7 +89,6 @@ function G_chat() {
       // empty search
       setSearch("");
     }
-    // scroll to down
     downSlide.current.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -130,7 +131,13 @@ function G_chat() {
   return (
     <>
       <div>
-        <h3 className={style.welcome}>Welcome in {channelName} group</h3>
+        <div className={style.welcome}>
+          <h4>
+            Ath Marine Welcomes You in gorup chat for the request ID:{" "}
+            {channelName}
+          </h4>
+          <p>This room is active for 24:00 Hours</p>
+        </div>
         <div className={style.chatBox}>
           {/* show all messages in chat */}
           {allMessages?.map((message) => (
@@ -183,7 +190,7 @@ function G_chat() {
           className={style.chatFrom}
         >
           <div className={style.customFileInput}>
-            <button className={style.btn}>Upload a file</button>
+            <button className={style.btnAttach}>📎</button>
             <input
               type="file"
               name="myfile"

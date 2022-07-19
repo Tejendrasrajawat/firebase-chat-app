@@ -6,11 +6,16 @@
   background-color: white;
   border-bottom: 1px solid black;
   width: 100%;
-  padding: 0.5rem;
+  padding: 0;
+}
+
+.welcome > h4,
+p {
+  margin: 10px;
 }
 
 .chatBox {
-  padding: 3rem 0 5rem 0;
+  padding: 5rem 0 5rem 0;
 }
 
 .message {
@@ -29,7 +34,7 @@
   border-top: 1px solid black;
   position: fixed;
   bottom: 0px;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .searchForm {
@@ -87,12 +92,13 @@ button {
   display: inline-block;
 }
 
-.btn {
-  border: 2px solid gray;
+.btnAttach {
+  border: 1px solid black;
   color: gray;
   background-color: white;
   padding: 8px 20px;
-  border-radius: 8px;
+  border-radius: 100%;
+  cursor: pointer;
   font-size: 20px;
   font-weight: bold;
 }
