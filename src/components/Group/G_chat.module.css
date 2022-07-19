@@ -54,14 +54,27 @@ p {
   width: 70%;
 }
 
+.cross {
+  position: fixed;
+  top: 69%;
+  padding: 10px;
+  border-radius: 100%;
+  background: white;
+  left: 78%;
+  font-size: 16px;
+  z-index: 9999;
+  cursor: pointer;
+  border: 1px dotted black;
+}
+
 .filter {
   position: fixed;
-  bottom: 37px;
+  bottom: 75px;
   border-radius: 10px;
-  width: 71%;
-  height: 140px;
+  width: 55%;
+  height: 110px;
   border: 1px solid black;
-  right: 13%;
+  right: 20%;
   background-color: white;
   overflow: auto;
 }
@@ -109,4 +122,24 @@ button {
   left: 0;
   top: 0;
   opacity: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -128,12 +128,17 @@ function G_chat() {
     setSend(false);
   };
 
+  const onCloseFilter = () => {
+    setSend(false);
+    setFilterMsg("");
+  };
+
   return (
     <>
       <div>
         <div className={style.welcome}>
           <h4>
-            Ath Marine Welcomes You in gorup chat for the request ID:{" "}
+            Ath Marine Welcomes You in group chat for the request ID:{" "}
             {channelName}
           </h4>
           <p>This room is active for 24:00 Hours</p>
@@ -168,7 +173,14 @@ function G_chat() {
         {/*shows filter messages in modal */}
         {filteredMsg ? (
           <>
+            <div className={style.cross} onClick={onCloseFilter}>
+              ❌
+            </div>
             <div className={style.filter}>
+              <p style={{ textAlign: "center" }}>
+                We found {filteredMsg.length} similler results.
+              </p>
+
               <ol>
                 {filteredMsg?.map((item) => (
                   <li
