@@ -11,7 +11,7 @@ function G_chat() {
   const params = useParams();
   const location = useLocation();
   const downSlide = useRef();
-  const filterRef = useRef();
+
   const [channelName, setChannelName] = useState(null);
   const [allMessages, setAllMessages] = useState(null);
   const [userNewMsg, setUserNewMsg] = useState("");
@@ -21,9 +21,6 @@ function G_chat() {
   const [search, setSearch] = useState(null);
   const [filteredMsg, setFilterMsg] = useState(null);
   const [send, setSend] = useState(false);
-
-  //scroll to filter message
-  const scrollToMessage = () => filterRef.current.scrollIntoView();
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
@@ -121,7 +118,8 @@ function G_chat() {
 
   // scroll to filter data
   const goToFilterData = (id) => {
-    scrollToMessage();
+    const element = document.getElementById("message_" + id);
+    element.scrollIntoView();
     setSearch("");
     setUserNewMsg("");
     setFilterMsg("");
@@ -155,7 +153,8 @@ function G_chat() {
                     : "row"
                 }`,
               }}
-              key={message.id}
+              id={`message_${message.data.timestamp.seconds}`}
+              key={message.data.timestamp.seconds}
             >
               <div className={style.message}>
                 <h4>
@@ -187,7 +186,6 @@ function G_chat() {
                     className={style.filterData}
                     onClick={() => goToFilterData(item.data.timestamp.seconds)}
                     key={item.data.timestamp.seconds}
-                    ref={filterRef}
                   >
                     {item.data.text}
                   </li>
