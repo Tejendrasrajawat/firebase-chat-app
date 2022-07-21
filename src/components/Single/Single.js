@@ -21,6 +21,9 @@ function Single() {
     });
   }, []);
 
+  // console.log(conversations[0].displayName.split(" ")[0]);
+  console.log(user.displayName);
+
   const goToChat = (id) => {
     navigate(`../s_chat/${id}`);
   };
@@ -32,7 +35,7 @@ function Single() {
       </h4>
       {conversations?.map((item) => (
         <>
-          {item.displayName !== user.displayName && (
+          {item.displayName !== user.displayName.split(" ")[0] && (
             <div
               onClick={() => goToChat(item.uid)}
               className={style.card}
