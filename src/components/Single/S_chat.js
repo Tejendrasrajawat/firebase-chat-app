@@ -87,12 +87,14 @@ function Single() {
   const showSearchResult = (e) => {
     e.preventDefault();
     // filter messages according to search
-    const filtered = message.filter((str) => {
+
+    const filtered = message?.filter((str) => {
       return str.message.toLowerCase().indexOf(search.toLowerCase()) >= 0;
     });
+
     // set messages to state
-    setFilterMsg(filtered);
     // set msg
+    setFilterMsg(filtered);
     setUserNewMsg(search);
     setSearch("");
     setSend(true);
