@@ -6,6 +6,7 @@ import style from "./Login.module.css";
 
 function Login() {
   const [user, setUser] = useState(null);
+  const [confirm, setConfirm] = useState(false);
   let navigate = useNavigate();
   const login = () => {
     auth
@@ -24,49 +25,48 @@ function Login() {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (user) {
-        db.collection("users")
-          .doc(user.uid)
-          .get()
-          .then((doc) => {
-            if (doc.exists) {
-              console.log("user exits", doc);
-            } else {
-              const details = {
-                name: user.displayName,
-                displayName: user.displayName.split(" ")[0],
-                photoURL: user.photoURL,
-                email: user.email,
-                uid: user.uid,
-              };
-              db.collection("users")
-                .doc(user.uid)
-                .set(details)
-                .then((res) => {
-                  console.log("new user created", res);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      db.collection("users")
+        .doc(user.uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            console.log("user exits", doc);
+          } else {
+            const details = {
+              name: user.displayName,
+              displayName: user.displayName.split(" ")[0],
+              photoURL: user.photoURL,
+              email: user.email,
+              uid: user.uid,
+            };
+            db.collection("users")
+              .doc(user.uid)
+              .set(details)
+              .then((res) => {
+                console.log("new user created", res);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-        setUser(user);
-      } else {
-        setUser(null);
-      }
+      setUser(user);
+      setConfirm(true);
     });
-  }, []);
+  }, [user]);
 
   useEffect(() => {
-    user
-      ? navigate("/main", { state: { user: user } })
-      : console.log("Login First !");
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
+    if (confirm) {
+      user
+        ? navigate("/main", { state: { user: user } })
+        : console.log("Login First !");
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [confirm]);
 
   return (
     <>
