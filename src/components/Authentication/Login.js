@@ -31,6 +31,7 @@ function Login() {
         .then((doc) => {
           if (doc.exists) {
             console.log("user exits", doc);
+            setConfirm(true);
           } else {
             const details = {
               name: user.displayName,
@@ -44,6 +45,7 @@ function Login() {
               .set(details)
               .then((res) => {
                 console.log("new user created", res);
+                setConfirm(true);
               })
               .catch((err) => {
                 console.log(err);
@@ -55,7 +57,6 @@ function Login() {
         });
 
       setUser(user);
-      setConfirm(true);
     });
   }, [user]);
 
