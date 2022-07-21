@@ -1,32 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { db } from "../../firebaseInit";
 import FileUpload from "../Fileupload";
 import firebase from "firebase";
+import style from "./S_chat.module.css";
+import { useParams } from "react-router-dom";
+import FileUpload_S from "../Fileupload_S";
 
 function Single() {
+  const downSlide = useRef();
+  const params = useParams();
   const [message, setMessage] = useState(null);
-  const [conversations, setConversations] = useState(null);
   const [userNewMsg, setUserNewMsg] = useState("");
   const [modalState, setModalState] = useState(false);
   const [file, setFileName] = useState(null);
-  const uid1 = 30;
-  const uid2 = 31;
-  useEffect(() => {
-    // show chat messages
-    db.collection("chat").onSnapshot((snapshot) => {
-      setMessage(
-        snapshot.docs.map((item) => ({
-          uid1: item.data().uid1,
-          uid2: item.data().uid2,
-          message: item.data().message,
-          id: item.id,
-          userName: item?.data()?.userName,
-          timestamp: item?.data()?.timestamp,
-          postImg: item?.data()?.postImg,
-        }))
-      );
-    });
-  }, []);
+  const [send, setSend] = useState(false);
+  const [search, setSearch] = useState(null);
+  const [filteredMsg, setFilterMsg] = useState(null);
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const uid1 = user.uid;
+  const uid2 = params.id;
 
   useEffect(() => {
     db.collection("chat")
@@ -41,25 +34,29 @@ function Single() {
           ) {
             convo.push(doc.data());
           }
-          setConversations(convo);
+          setMessage(convo);
         });
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });
+    setTimeout(() => {
+      downSlide.current.scrollIntoView({ behavior: "smooth" });
+    }, 1000);
   }, []);
 
   const sendMsg = (e) => {
     e.preventDefault();
     if (userNewMsg) {
-      const userName = "tejendra";
+      const userName = user.displayName;
       const obj = {
-        id: userNewMsg,
+        id: (Math.random() * 1000000).toFixed(0),
         timestamp: firebase.firestore.Timestamp.now(),
         uid1: uid1,
         uid2: uid2,
         message: userNewMsg,
         userName: userName,
+        postImg: null,
       };
 
       // add data to channels -> message
@@ -77,6 +74,20 @@ function Single() {
     }
   };
 
+  const showSearchResult = (e) => {
+    e.preventDefault();
+    // filter messages according to search
+    const filtered = message.filter((str) => {
+      return str.message.toLowerCase().indexOf(search.toLowerCase()) >= 0;
+    });
+    // set messages to state
+    setFilterMsg(filtered);
+    // set msg
+    setUserNewMsg(search);
+    setSearch("");
+    setSend(true);
+  };
+
   const handelFileUpload = (e) => {
     e.preventDefault();
     if (e.target.files[0]) {
@@ -90,79 +101,112 @@ function Single() {
     setModalState(!modalState);
   };
 
+  const goToFilterData = (id) => {
+    const element = document.getElementById("message_" + id);
+    element.scrollIntoView();
+    setSearch("");
+    setUserNewMsg("");
+    setFilterMsg("");
+    setSend(false);
+  };
+
+  const onCloseFilter = () => {
+    setSend(false);
+    setFilterMsg("");
+  };
+
   return (
     <>
-      {modalState ? <FileUpload setState={openModal} file={file} /> : null}
-      {conversations?.map((item) => {
-        return (
-          <div
-            style={{
-              display: "flex",
-              flexFlow: `${item.uid1 === 31 ? "row-reverse" : "row"}`,
-            }}
-          >
+      <div>
+        <div className={style.welcome}>
+          <h4>Ath Marine Welcomes You {user?.displayName}</h4>
+          <p>This room is active for 24:00 Hours</p>
+        </div>
+        <div className={style.chatBox}>
+          {/* show all messages in chat */}
+          {message?.map((message) => (
             <div
-              key={item.id}
               style={{
-                border: "1px solid black",
-                borderRadius: "10px",
-                margin: "5px 10px",
-                width: "150px",
-                padding: "10px",
+                display: "flex",
+                flexFlow: `${
+                  message.userName == user?.displayName ? "row-reverse" : "row"
+                }`,
               }}
+              id={`message_${message.id}`}
+              key={message.id}
             >
-              <p>user: {item.id}</p>
-              <p>{item.message}</p>
-              {item?.postImg ? <img alt="img" src={item.postImg} /> : null}
+              <div className={style.message}>
+                <h4>
+                  <p>{message.userName}</p>
+                </h4>
+                <p>{message.message}</p>
+                {message?.postImg ? (
+                  <img alt="img" src={message?.postImg} width="300px" />
+                ) : null}
+              </div>
             </div>
-          </div>
-        );
-      })}
-      <form
-        autoComplete="off"
-        style={{
-          width: "100%",
-          display: "flex",
-          textAlign: "center",
-          color: "white",
-          backgroundColor: "black",
-          position: "fixed",
-          bottom: "0px",
-          justifyContent: "center",
-        }}
-        onSubmit={(e) => sendMsg(e)}
-      >
-        <input
-          accept="image/*"
-          id="icon-button-file"
-          type="file"
-          onChange={(e) => handelFileUpload(e)}
-        />
-        <input
-          required
-          style={{
-            border: "1px solid black",
-            borderRadius: "5px",
-            padding: "0.5rem",
-            margin: "0.5rem",
-          }}
-          value={userNewMsg}
-          onChange={(e) => {
-            setUserNewMsg(e.target.value);
-          }}
-        />
-        <button
-          style={{
-            border: "1px solid transparent",
-            borderRadius: "5px",
-            padding: "0.5rem",
-            margin: "0.5rem",
-            cursor: "pointer",
-          }}
+          ))}
+        </div>
+        <div ref={downSlide}></div>
+        {/*shows filter messages in modal */}
+        {filteredMsg ? (
+          <>
+            <div className={style.cross} onClick={onCloseFilter}>
+              ❌
+            </div>
+            <div className={style.filter}>
+              <p style={{ textAlign: "center" }}>
+                We found {filteredMsg.length} similler results.
+              </p>
+
+              <ol>
+                {filteredMsg?.map((item) => (
+                  <li
+                    className={style.filterData}
+                    onClick={() => goToFilterData(item.timestamp.seconds)}
+                    key={item.timestamp.seconds}
+                  >
+                    {item.message}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </>
+        ) : null}
+        <form
+          autoComplete="off"
+          onSubmit={send ? (e) => sendMsg(e) : (e) => showSearchResult(e)}
+          className={style.chatFrom}
         >
-          Send
-        </button>
-      </form>
+          <div className={style.customFileInput}>
+            <button className={style.btnAttach}>📎</button>
+            <input
+              type="file"
+              name="myfile"
+              onChange={(e) => handelFileUpload(e)}
+            />
+          </div>
+
+          <input
+            required
+            value={send ? userNewMsg : search}
+            className={style.messageInput}
+            placeholder={
+              filteredMsg
+                ? `We found ${filteredMsg.length} results`
+                : "Enter Your Message Here ..."
+            }
+            onChange={
+              send
+                ? (e) => setUserNewMsg(e.target.value)
+                : (e) => setSearch(e.target.value)
+            }
+          />
+          {send ? <button>Send</button> : <button>Search</button>}
+        </form>
+      </div>
+
+      {modalState ? <FileUpload_S setState={openModal} file={file} /> : null}
     </>
   );
 }

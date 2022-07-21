@@ -1,0 +1,145 @@
+.welcome {
+  text-align: center;
+  position: fixed;
+  color: black;
+  margin: 0 auto;
+  background-color: white;
+  border-bottom: 1px solid black;
+  width: 100%;
+  padding: 0;
+}
+
+.welcome > h4,
+p {
+  margin: 10px;
+}
+
+.chatBox {
+  padding: 5rem 0 5rem 0;
+}
+
+.message {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px 10px;
+  min-width: 150px;
+  max-width: 300px;
+  padding: 10px;
+}
+
+.chatFrom {
+  width: 100%;
+  display: flex;
+  background-color: white;
+  border-top: 1px solid black;
+  position: fixed;
+  bottom: 0px;
+  justify-content: space-evenly;
+}
+
+.searchForm {
+  width: 100%;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.301);
+  position: fixed;
+  bottom: 0px;
+  justify-content: start;
+}
+
+.messageInput {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  width: 70%;
+}
+
+.cross {
+  position: fixed;
+  top: 69%;
+  padding: 10px;
+  border-radius: 100%;
+  background: white;
+  left: 78%;
+  font-size: 16px;
+  z-index: 9999;
+  cursor: pointer;
+  border: 1px dotted black;
+}
+
+.filter {
+  position: fixed;
+  bottom: 75px;
+  border-radius: 10px;
+  width: 55%;
+  height: 110px;
+  border: 1px solid black;
+  right: 20%;
+  background-color: white;
+  overflow: auto;
+}
+
+.filterData {
+  border: 1px solid black;
+  width: 70%;
+  max-width: 100%;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 5px;
+  cursor: pointer;
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: black;
+  height: 50px;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.customFileInput {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btnAttach {
+  border: 1px solid black;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 100%;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.customFileInput input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
