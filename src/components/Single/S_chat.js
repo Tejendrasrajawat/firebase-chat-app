@@ -14,7 +14,7 @@ function Single() {
   const [modalState, setModalState] = useState(false);
   const [file, setFileName] = useState(null);
   const [send, setSend] = useState(false);
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState("");
   const [filteredMsg, setFilterMsg] = useState(null);
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -22,8 +22,15 @@ function Single() {
   const uid2 = params.id;
 
   useEffect(() => {
+    setTimeout(() => {
+      downSlide.current.scrollIntoView({ behavior: "smooth" });
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
     db.collection("chat")
       .where("uid1", "in", [uid1, uid2])
+      .orderBy("timestamp", "asc")
       .get()
       .then((querySnapshot) => {
         let convo = [];
@@ -40,10 +47,7 @@ function Single() {
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });
-    setTimeout(() => {
-      downSlide.current.scrollIntoView({ behavior: "smooth" });
-    }, 1000);
-  }, []);
+  }, [send]);
 
   const sendMsg = (e) => {
     e.preventDefault();
@@ -71,7 +75,13 @@ function Single() {
       // }
 
       setUserNewMsg("");
+      setSend(false);
+      setSearch("");
+      setFilterMsg("");
     }
+    setTimeout(() => {
+      downSlide.current.scrollIntoView({ behavior: "smooth" });
+    }, 1000);
   };
 
   const showSearchResult = (e) => {
@@ -163,7 +173,7 @@ function Single() {
                 {filteredMsg?.map((item) => (
                   <li
                     className={style.filterData}
-                    onClick={() => goToFilterData(item.timestamp.seconds)}
+                    onClick={() => goToFilterData(item.id)}
                     key={item.timestamp.seconds}
                   >
                     {item.message}

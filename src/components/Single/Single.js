@@ -24,8 +24,7 @@ function Single() {
   const goToChat = (id) => {
     navigate(`../s_chat/${id}`);
   };
-  console.log(conversations);
-  console.log(user.uid);
+
   return (
     <div className={style.single}>
       <h4 style={{ textAlign: "center", width: "100vw" }}>

@@ -34,11 +34,11 @@ function Main(props) {
           </button>
         </div>
       </div>
-      <div className={style.common}>
+      {/* <div className={style.common}>
         <button onClick={() => navigate("/common")}>
           Go To Common Chat Demo
         </button>
-      </div>
+      </div> */}
       {/* <button onClick={logout}>Sign Out</button> */}
     </>
   );
