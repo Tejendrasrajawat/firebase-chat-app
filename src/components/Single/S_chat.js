@@ -47,7 +47,7 @@ function Single() {
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });
-  }, [send]);
+  }, [send, message]);
 
   const sendMsg = (e) => {
     e.preventDefault();

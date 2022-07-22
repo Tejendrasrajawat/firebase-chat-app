@@ -21,9 +21,6 @@ function Single() {
     });
   }, []);
 
-  // console.log(conversations[0].displayName.split(" ")[0]);
-  console.log(user.displayName);
-
   const goToChat = (id) => {
     navigate(`../s_chat/${id}`);
   };

@@ -13,8 +13,9 @@ function Main(props) {
   }, []);
 
   const logout = () => {
-    auth.signOut();
+    console.log(auth.signOut());
     localStorage.clear();
+    navigate("/");
   };
   return (
     <>
@@ -34,12 +35,12 @@ function Main(props) {
           </button>
         </div>
       </div>
-      {/* <div className={style.common}>
-        <button onClick={() => navigate("/common")}>
+      <div className={style.common}>
+        {/* <button onClick={() => navigate("/common")}>
           Go To Common Chat Demo
-        </button>
-      </div> */}
-      {/* <button onClick={logout}>Sign Out</button> */}
+        </button> */}
+        <button onClick={logout}>Sign Out</button>
+      </div>
     </>
   );
 }

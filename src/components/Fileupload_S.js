@@ -98,6 +98,7 @@ function FileUpload_S({ setState, file }) {
             className={style.messageInput}
           />
         </form>
+        <p style={progressBar}>Uploading...{progress}%</p>
         <button onClick={handleClose}>Cancel</button>
         <button type="submit" onClick={(e) => handleUpload(e)}>
           Upload

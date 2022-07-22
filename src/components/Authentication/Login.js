@@ -71,18 +71,20 @@ function Login() {
 
   return (
     <>
-      <div className="login">
-        {!user && (
+      {!user && (
+        <div className={style.login}>
           <button onClick={login} className={style.sign}>
             Sign In With Google
           </button>
-        )}
-        {user && (
+        </div>
+      )}
+      {user && (
+        <div className={style.login}>
           <button onClick={logout} className={style.sign}>
             Sign Out
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }

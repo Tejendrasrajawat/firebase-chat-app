@@ -5,5 +5,13 @@
   border: 1px solid black;
   padding: 0.5rem;
   float: right;
-  margin-right: 1rem;
+}
+
+.login {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-around;
 }
