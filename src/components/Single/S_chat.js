@@ -25,7 +25,7 @@ function Single() {
     setTimeout(() => {
       downSlide.current.scrollIntoView({ behavior: "smooth" });
     }, 1000);
-  }, []);
+  }, [message]);
 
   useEffect(() => {
     db.collection("chat")
