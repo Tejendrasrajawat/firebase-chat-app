@@ -1,4 +1,5 @@
 .welcome {
+  display: flex;
   text-align: center;
   position: fixed;
   color: black;

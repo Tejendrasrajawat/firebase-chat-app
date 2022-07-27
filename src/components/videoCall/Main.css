@@ -1,0 +1,22 @@
+.backdrop {
+  background-color: white;
+  position: absolute;
+  left: 70px;
+  border: 1px dotted black;
+  border-radius: 20px;
+  top: 25px;
+  width: 85vw;
+  height: 85vh;
+}
+
+.cross {
+  background-color: white;
+  padding: 0.5rem;
+  position: absolute;
+  right: 110px;
+  cursor: pointer;
+  top: 13px;
+  border: 1px dotted black;
+  border-radius: 100%;
+  z-index: 999;
+}

@@ -4,7 +4,9 @@ import FileUpload from "../Fileupload";
 import firebase from "firebase";
 import style from "./S_chat.module.css";
 import { useParams } from "react-router-dom";
+
 import FileUpload_S from "../Fileupload_S";
+import Main from "../videoCall/Main";
 
 function Single() {
   const downSlide = useRef();
@@ -25,7 +27,7 @@ function Single() {
     setTimeout(() => {
       downSlide.current.scrollIntoView({ behavior: "smooth" });
     }, 1000);
-  }, [message]);
+  }, []);
 
   useEffect(() => {
     db.collection("chat")
@@ -131,8 +133,13 @@ function Single() {
     <>
       <div>
         <div className={style.welcome}>
-          <h4>Ath Marine Welcomes You {user?.displayName}</h4>
-          <p>This room is active for 24:00 Hours</p>
+          <div style={{ width: "90vw" }}>
+            <h4>Ath Marine Welcomes You {user?.displayName}</h4>
+            <p>This room is active for 24:00 Hours</p>
+          </div>
+          <div style={{ marginTop: "1rem" }}>
+            <Main />
+          </div>
         </div>
         <div className={style.chatBox}>
           {/* show all messages in chat */}

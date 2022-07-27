@@ -19,6 +19,7 @@ function App() {
         <Route path="group" element={<Group />} />
         <Route path="single" element={<Single />} />
         <Route path="common" element={<Common />} />
+
         <Route path="g_chat/:id" element={<G_chat />} />
         <Route path="s_chat/:id" element={<S_chat />} />
       </Routes>

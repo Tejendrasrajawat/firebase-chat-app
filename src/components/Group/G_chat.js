@@ -27,7 +27,7 @@ function G_chat() {
     setTimeout(() => {
       downSlide.current.scrollIntoView({ behavior: "smooth" });
     }, 1000);
-  }, [allMessages]);
+  }, []);
 
   useEffect(() => {
     // show channel name
