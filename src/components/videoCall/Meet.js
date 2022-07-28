@@ -1,4 +1,3 @@
-import MainScreen from "./screens/MainScreen";
 // import firepadRef, { db, userName } from "./server/firebase";
 import { rd as firepadRef } from "../../firebaseInit";
 import { firebase as db } from "../../firebaseInit";
@@ -11,6 +10,7 @@ import {
   updateParticipant,
 } from "../../store/actioncreator";
 import { connect } from "react-redux";
+import MainScreenComponent from "./screens/MainScreen/MainScreen.component";
 
 function Meet(props) {
   const getUserStream = async () => {
@@ -81,7 +81,7 @@ function Meet(props) {
 
   return (
     <div className="App">
-      <MainScreen />
+      <MainScreenComponent />
     </div>
   );
 }
