@@ -9,6 +9,7 @@ import Main from "./components/Main";
 
 import Single from "./components/Single/Single";
 import S_chat from "./components/Single/S_chat";
+import Meet from "./components/videoCall/Meet";
 
 function App() {
   return (
@@ -19,9 +20,9 @@ function App() {
         <Route path="group" element={<Group />} />
         <Route path="single" element={<Single />} />
         <Route path="common" element={<Common />} />
-
-        <Route path="g_chat/:id" element={<G_chat />} />
         <Route path="s_chat/:id" element={<S_chat />} />
+        <Route path="g_chat/:id" element={<G_chat />} />
+        <Route path="meet/:id" element={<Meet />} />
       </Routes>
     </BrowserRouter>
   );

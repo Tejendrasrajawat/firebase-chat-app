@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import firebase from "firebase/app";
 import { db } from "../../firebaseInit";
-import FileUpload from "../Fileupload";
+import FileUpload from "../FileUpload/Fileupload";
 import { useLocation } from "react-router-dom";
 import style from "./G_chat.module.css";
 

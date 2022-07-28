@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { storage } from "../firebaseInit";
+import { storage } from "../../firebaseInit";
 import { useParams } from "react-router-dom";
 import firebase from "firebase/app";
-import { db } from "../firebaseInit";
+import { db } from "../../firebaseInit";
 import style from "./FileUpload.module.css";
 
 function FileUpload_S({ setState, file }) {

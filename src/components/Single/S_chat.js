@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { db } from "../../firebaseInit";
-import FileUpload from "../Fileupload";
+import FileUpload from "../FileUpload/Fileupload";
 import firebase from "firebase";
 import style from "./S_chat.module.css";
 import { useParams } from "react-router-dom";
 
-import FileUpload_S from "../Fileupload_S";
+import FileUpload_S from "../FileUpload/Fileupload_S";
 import Main from "../videoCall/Main";
 
 function Single() {
