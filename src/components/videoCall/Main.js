@@ -42,8 +42,8 @@ function Main() {
   useEffect(() => {
     if (currentPage === "meet") {
       var firepadRef = rd;
-      const name = prompt("What's your name?");
-      setUserName(name);
+      // const name = prompt("What's your name?");
+      // setUserName(name);
       const urlparams = new URLSearchParams(window.location.search);
       const roomId = urlparams.get("id");
       if (roomId) {
@@ -51,7 +51,6 @@ function Main() {
       } else {
         firepadRef = firepadRef.push();
 
-        // window.history.replaceState(null, "Meet", "?id=" + firepadRef.key);
         navigate(`../meet/${firepadRef.key}`);
       }
     }

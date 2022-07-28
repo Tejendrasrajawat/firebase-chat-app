@@ -13,6 +13,8 @@ import { connect } from "react-redux";
 import MainScreenComponent from "./screens/MainScreen/MainScreen.component";
 
 function Meet(props) {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const getUserStream = async () => {
     const localStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
@@ -35,11 +37,14 @@ function Meet(props) {
           screen: false,
         };
         const userStatusRef = participantRef.push({
-          userName: "userName",
+          userName: user?.displayName || "user",
           preferences: defaultPreference,
         });
         props.setUser({
-          [userStatusRef.key]: { name: "userName", ...defaultPreference },
+          [userStatusRef.key]: {
+            name: user?.displayName || "user",
+            ...defaultPreference,
+          },
         });
         userStatusRef.onDisconnect().remove();
       }
