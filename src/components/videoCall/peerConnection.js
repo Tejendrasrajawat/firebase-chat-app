@@ -13,6 +13,7 @@ export const updatePreference = (userId, preference) => {
   });
 };
 
+// create offer
 export const createOffer = async (peerConnection, receiverId, createdID) => {
   const currentParticipantRef = participantRef.child(receiverId);
   peerConnection.onicecandidate = (event) => {
@@ -74,6 +75,7 @@ export const initializeListensers = async (userId) => {
   });
 };
 
+// create answer
 const createAnswer = async (otherUserId, userId) => {
   const pc = store.getState().participants[otherUserId].peerConnection;
   const participantRef1 = participantRef.child(otherUserId);

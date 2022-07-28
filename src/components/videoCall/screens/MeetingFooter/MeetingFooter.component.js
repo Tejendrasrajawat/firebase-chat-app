@@ -9,7 +9,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ReactTooltip from "react-tooltip";
 import "./MeetingFooter.css";
+import { useNavigate } from "react-router-dom";
 const MeetingFooter = (props) => {
+  const navigate = useNavigate();
   const [streamState, setStreamState] = useState({
     mic: true,
     video: false,
@@ -51,6 +53,12 @@ const MeetingFooter = (props) => {
   useEffect(() => {
     props.onVideoClick(streamState.video);
   }, [streamState.video]);
+
+  const onEndCall = () => {
+    navigate("../main");
+    window.location.reload(false);
+  };
+
   return (
     <div className="meeting-footer">
       <div
@@ -78,6 +86,15 @@ const MeetingFooter = (props) => {
       >
         <FontAwesomeIcon icon={faDesktop} />
       </div>
+      <div
+        className="meeting-icons"
+        data-tip="End Call"
+        onClick={onEndCall}
+        style={{ marginLeft: "1rem" }}
+      >
+        ❌
+      </div>
+
       <ReactTooltip />
     </div>
   );
