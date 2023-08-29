@@ -136,7 +136,7 @@ function G_chat() {
       <div>
         <div className={style.welcome}>
           <h4>
-            Ath Marine Welcomes You in group chat for the request ID:{" "}
+            Super Chat Welcomes You in group chat for the request ID:{" "}
             {channelName}
           </h4>
           <p>This room is active for 24:00 Hours</p>

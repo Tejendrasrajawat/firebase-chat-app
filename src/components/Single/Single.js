@@ -28,7 +28,7 @@ function Single() {
   return (
     <div className={style.single}>
       <h4 style={{ textAlign: "center", width: "100vw" }}>
-        Hi {user.displayName} , Welcome to transas.
+        Hi {user.displayName} , Welcome to Super Chat.
       </h4>
       {conversations?.map((item) => (
         <>

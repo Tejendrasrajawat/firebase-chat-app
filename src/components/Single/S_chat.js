@@ -134,7 +134,7 @@ function Single() {
       <div>
         <div className={style.welcome}>
           <div style={{ width: "90vw" }}>
-            <h4>Ath Marine Welcomes You {user?.displayName}</h4>
+            <h4>Super Chat Welcomes You {user?.displayName}</h4>
             <p>This room is active for 24:00 Hours</p>
           </div>
           <div style={{ marginTop: "1rem" }}>

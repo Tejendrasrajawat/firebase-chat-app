@@ -29,6 +29,11 @@ function Main(props) {
             Go To Single Chat Demo
           </button>
         </div>
+        <div className={style.single}>
+          <button onClick={() => navigate("/meet/:id")}>
+            Go To Video Call
+          </button>
+        </div>
         <div className={style.group}>
           <button onClick={() => navigate("/group")}>
             Go To Group Chat Demo

@@ -115,6 +115,8 @@ const addConnection = (newUser, currentUser, stream) => {
     a.localeCompare(b)
   );
 
+  console.log(offerIds);
+
   newUser[newUserId].peerConnection = peerConnection;
   if (offerIds[0] !== currentUserId)
     createOffer(peerConnection, offerIds[0], offerIds[1]);
